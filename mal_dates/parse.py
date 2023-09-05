@@ -2,6 +2,7 @@ import gc
 import re
 from calendar import month_name
 from time import sleep
+from random import randint
 from typing import cast
 
 from selenium.webdriver import Chrome
@@ -145,7 +146,7 @@ def process_list(driver: Chrome, scroll_time: float = 3.0) -> Chrome:
             shows.set_description("")
             failed += [name]
 
-            print(f"Processing \"{name}\" (Failed! History for this entry is missing! Please fix it manually!)")
+            print(f"\nProcessing \"{name}\" (Failed! History for this entry is missing! Please fix it manually!)")
 
             shows.set_description(f"Processing \"{name}\" (Failed!)")
 
@@ -155,14 +156,14 @@ def process_list(driver: Chrome, scroll_time: float = 3.0) -> Chrome:
             shows.set_description(f"")
             failed += [name]
 
-            print(f"Processing \"{name}\" (Failed! Please fix this entry manually!): {str(e)}")
+            print(f"\nProcessing \"{name}\" (Failed! Please fix this entry manually!): {str(e)}")
 
             shows.set_description(f"Processing \"{name}\" (Failed!)")
 
             driver.execute_script(f"el = document.elementFromPoint(0, 0); el.click();")
             action.click().perform()
         finally:
-            if (i > 0) and (i % 50 == 0):
+            if (i > 0) and (i % randint(35, 75) == 0):
                 shows.set_description(f"Processing \"{name}\" (Clearing up memory)")
 
                 # Deleting a fuckton of vars
