@@ -14,11 +14,11 @@ def check_env() -> None:
     if not Path(".env").exists():
         raise ValueError("Rename the \".env.template\" file to \".env\" and set the variables!")
 
-    if bool(os.environ.get("USERNAME", False)) is False:
-        raise ValueError("You must set a \"USERNAME\" in \".env\"!")
+    if bool(os.environ.get("MAL_USERNAME", False)) is False:
+        raise ValueError("You must set a \"MAL_USERNAME\" in \".env\"!")
 
-    if bool(os.environ.get("PASSWORD", False)) is False:
-        raise ValueError("You must set a \"PASSWORD\" in \".env\"!")
+    if bool(os.environ.get("MAL_PASSWORD", False)) is False:
+        raise ValueError("You must set a \"MAL_PASSWORD\" in \".env\"!")
 
 
 def _check_debug() -> bool:

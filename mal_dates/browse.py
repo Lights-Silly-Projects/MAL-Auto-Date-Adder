@@ -30,8 +30,8 @@ def login(driver: Chrome) -> Chrome:
         pass
 
     # Login.
-    driver.find_element(By.ID, "loginUserName").send_keys(os.environ.get("USERNAME"))
-    driver.find_element(By.ID, "login-password").send_keys(os.environ.get("PASSWORD"))
+    driver.find_element(By.ID, "loginUserName").send_keys(os.environ.get("MAL_USERNAME"))
+    driver.find_element(By.ID, "login-password").send_keys(os.environ.get("MAL_PASSWORD"))
 
     try:
         # Get this annoying button out of the way.
@@ -61,7 +61,7 @@ def browse_to_sublist(driver: Chrome, sublist_class: str) -> Chrome:
     if idx == 0:
         idx = 7
 
-    driver.get(f"https://myanimelist.net/animelist/{os.environ.get('USERNAME')}?status={idx}")
+    driver.get(f"https://myanimelist.net/animelist/{os.environ.get('MAL_USERNAME')}?status={idx}")
 
     wait(driver, By.CLASS_NAME, sublist_class, 10)
 
